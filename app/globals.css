@@ -49,11 +49,11 @@
 
   .container{
     @apply bg-secondary-bg border-[2px] border-border-strong rounded-[4px] border-dashed p-2;
+    transition: all 0.3s ease-in-out;
   }
   .container:hover{
     border-color: var(--color-accent-primary) !important;
-    transform: translateY(-4px);
-    transition: all 0.3s ease-in-out;
+    transform: translateY(-1px);
   }
 }
 
