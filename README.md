@@ -1,6 +1,6 @@
 # PromptCLI
 
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/fynix-dev/promptcli)
+[![Ask DeepWiki](https://promptcli.web.app/logo.svg)](https://deepwiki.com/fynix-dev/promptcli)
 
 **Write better AI Prompts. Faster.**
 
