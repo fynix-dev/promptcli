@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "PromptCLI",
+  title: "PromptCLI - Write Better AI Prompts",
   description: "Write better AI prompts. Faster.",
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${spaceMono.variable} ${inter.variable} bg-primary-bg antialiased`}
       >
-        <NavBar />
+        {/* <NavBar /> */}
         {children}
       </body>
     </html>
