@@ -4,7 +4,7 @@ import PricingCard from "@/components/PricingCard"
 
 const page = () => {
   return (
-    <main className="w-full h-full min-h-screen bg-primary-bg bg-[url('./images/grid.png')] bg-contain bg-repeat mt-[50px] md:p-[16px] p-[8px]">
+    <main className="w-full h-full min-h-screen bg-primary-bg bg-[url('/images/grid.png')] bg-contain bg-repeat mt-[50px] md:p-[16px] p-[8px]">
       {/* hero layout */}
       <div className="md:w-[90%] w-full mx-auto h-auto md:p-8 flex flex-col items-center md:gap-[28px] gap-[16px]">
         <h1 className=" w-full text-center font-inter md:text-[50px] text-[32px] font-bold text-primary-text ">Write better <span className="text-accent-primary">AI Prompts</span>. Faster</h1>
