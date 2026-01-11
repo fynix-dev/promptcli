@@ -9,10 +9,10 @@ const NavBar = () => {
             </div>
 
             <ul className="hidden md:flex gap-6 items-center text-[14px] text-muted-text ">
-                <li className="text-primary-text cursor-pointer">Home</li>
-                <li className="hover:text-secondary-text cursor-pointer">Create</li>
-                <li className="hover:text-secondary-text cursor-pointer">About</li>
-                <li className="hover:text-secondary-text cursor-pointer">Contact</li>
+                <li className="text-primary-text cursor-pointer !list-none">Home</li>
+                <li className="hover:text-secondary-text cursor-pointer !list-none">Create</li>
+                <li className="hover:text-secondary-text cursor-pointer !list-none">About</li>
+                <li className="hover:text-secondary-text cursor-pointer !list-none">Contact</li>
             </ul>
         </nav>
     </header>

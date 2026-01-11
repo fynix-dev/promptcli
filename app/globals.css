@@ -36,6 +36,13 @@
 }
 
 @layer components{
+  ul{
+    list-style-type: disc !important;
+    padding-left: 1.5rem !important;
+  }
+  li{
+    display: list-item !important;
+  }
   .btn{
     @apply !text-primary-text !font-bold !bg-accent-primary !text-[14px] !border-0;
   }
@@ -49,11 +56,21 @@
 
   .container{
     @apply bg-secondary-bg border-[2px] border-border-strong rounded-[4px] border-dashed p-2;
-    transition: all 0.3s ease-in-out;
   }
-  .container:hover{
-    border-color: var(--color-accent-primary) !important;
-    transform: translateY(-1px);
+
+  .muted-text{
+    @apply text-muted-text text-[12px] select-none ;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
 

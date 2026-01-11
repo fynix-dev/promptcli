@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${spaceMono.variable} ${inter.variable} bg-primary-bg antialiased`}
       >
-        {/* <NavBar /> */}
+        <NavBar />
         {children}
       </body>
     </html>

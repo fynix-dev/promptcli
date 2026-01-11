@@ -91,3 +91,34 @@ export const audience: Audience[] = [
     icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEM0lEQVR4nO1ZvW8URxQf3AVxN3PnuICYJoACKUIaCEpSJwgC4i8wEvQIASmTeW9BoPDRhMYUpMEBhAJBFOf3FiTjSNACBfwHqYMhChG2c9GbnV0f9+Xb0+3drvBPGmm1Ozszb97X780otYY1rA5rxzTDH5rgoTyroqJCdq9hrEsrs/1GFRWG8fdYEMN4WxUR46HdZAgXDcHbuH04e2ajKhoMwSWnCcJbrjmtwAVVJBjGA4ZhyTAum5r9zFCw0z0TLlZmcb8qhjmJJmDJa+PH+JtmBP9u0TBelL4qV7B2zEUngjt+keLYy4bhB1Wvr0v61evrDIGNvnmBCO6UQ/w2s9BcYvxCMz7TDE/luVtfTTifRCbn1HhLzKlT/8jUxG/gbfyfyzNZQDM+b5jkxTs72yIIPGwRhIKdHQURf2kSxDDODVyICtkvIwHwT2nyXLlvv+74g7VjYh6SJxoWtyw+0WxamjAwBP8lQjPedokyC9MyDFe9IGel+YX90su/kickxJrYVwhs/E0z4Ipv4PlMc8rEnN2gCV/LrpXCYJs0eZZ343d/KvU6TmUW93thXPjVbD93mpDwG9p9KmtoCo54bcw3O7NmOJpmLMN4sSUhEp5Xw4BmfBRNGEwlC6JgygvyuBAUpTQbfOLMiHFh4z27Pn4/+fjSB4bwLxGmWrOfphnTSG5JIhP8poYBzfizn/BK64Jw2mvlcpoxy1E0Gx6Nr9DpzZrwjVCLdrsu7+Sb9KnW7GSqwopcnpkbSmEVO6MmuNapj2ac8bt7U+URmuF7L8RLfd9+3KlfuXZ6i/iPj2qnVP6EgIhuk/1utf4mtAc9IVzKhTDVmp0UE1lhqnis13814fGEwTLeTOUzg8I42e0SnSLHliiEC71ool3h1GBmb2RMGVtliQlHO4IjSbKLSR3BtW4+sRq8z8w0aEc25pHMNTFnNwxMgArjV0IAHXdamWhB8kTaxNYNPjRfiTXktfRa5pY19D9waPc01hOe9M0bhsONGXvQkLFlDjcXeaoebd7z1YqztjCETxrqibPCYNWQUQqDbb4McPWMrOn9FaQk9TbBixbTomAqc9OiYKqdaZVruKvvgaU8lcquxdkJpwfu7ITTA3f2ZkhlJ0VRS/hlnJEQqvpEmexWzfBr5uG3HaphsKMlITIeUCmhyR7SDK+GmhDbQWiFJrixkhzxuOoRmvFE7AOa8Hr1wZmP1KihCU4mpLEHzYgmEtLIeELlCZrwVGxmXWl85BPenOCkyiO0N7PuhZVzbOlzQ+UV46HdpAn+caVuGOxoz6ecSf07Etre1+ED4fSgDh9GgiyOg0aGtgd0DIfjZKeKAs1wtPm+ot8j05HCVZMSYv0htoTjiHTC32kOsXOBd64VGM7508erqmiouBI5xUVPnqFTXL3lGiV3GQpPpbIrk9096vWsQY0Q/wOzO4+Az2bHBwAAAABJRU5ErkJggg=="
   }
 ];
+
+
+export const exampleChat: string[] = [
+  "I want a website that helps users track their fitness goals",
+  "Sure! Here is a detailed prompt for your idea. Feel to refine it further.",
+  "I want the website to have a clean, modern design with easy navigation"
+];
+
+export const initialSystemPrompt = `***Act as a Prompt Architect***.You are an expert in transforming simple user inputs into effective, detailed prompts.
+
+Your task is to take a user's one-line idea and expand it into a comprehensive, high-quality prompt that enables another AI to perform the task accurately and creatively.
+
+Instructions:
+- Carefully analyze the user's one-line idea to identify the core goal.
+- Infer missing context that would improve clarity and effectiveness.
+- Identify key components such as role, task, format, tone, constraints, and expected output.
+- Convert the idea into a structured, detailed prompt.
+
+Rules:
+- The generated prompt MUST start by assigning a clear role to the AI (e.g., "Act as a...", "You are an expert...").
+- Include clear step-by-step instructions for the AI to follow.
+- Define rules or constraints to control quality and behavior.
+- Do NOT answer the task itself—only generate the prompt.
+- Add atmost 3 variables like {{variable_name}} that can be customized later.
+- I want the prompt to have neccessary markdown formatting like bold, bullets, new line, etc to make it more readable.
+- Also provide 5 questions with example answer that would help you better understand the user's needs for refining the prompt.
+- I also need a pleasing reply for the user. Do not ask any questions here
+- Any newlines, tabs, or special characters inside JSON values must be escaped (e.g., use \\n for newlines).
+- Do NOT include markdown formatting inside the JSON values unless it is properly escaped.
+- The user will give you the basic idea`
+  
