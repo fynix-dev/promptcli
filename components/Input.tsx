@@ -35,6 +35,7 @@ const Input = ({setGeneratedPrompt, setChat, setQuestions, setLoadingPrompt}: In
       setLoadingPrompt(true);
       try {
         const response = await fetch('/api/ai', {
+          cache: "no-store",
           method: "POST",
           headers: {
               "Content-Type": "application/json"

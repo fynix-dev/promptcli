@@ -1,8 +1,6 @@
 import Input from "@/components/Input";
 import WorkSpace from "@/components/WorkSpace";
-import { exampleChat } from "@/constants/constants";
 import type { Metadata } from "next";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const metadata: Metadata = {
   title: "PromptCLI - Prompt generator",
@@ -12,7 +10,7 @@ export const metadata: Metadata = {
 const page = () => {
 
   return (
-    <main className="w-full h-screen mt-[50px] bg-primary-bg flex items-center justify-center overflow-y-hidden">
+    <main className="w-full h-auto min-h-screen md:h-screen p-[16px] mt-[50px] bg-primary-bg flex items-center justify-center overflow-scroll md:overflow-hidden">
       <WorkSpace />
     </main>
   )

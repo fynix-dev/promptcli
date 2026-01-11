@@ -1,97 +1,121 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Input from "./Input";
 import Markdown from "react-markdown";
 import Questions from "./Questions";
 
 type QuestionAnswer = {
-    question: string;
-    example_answer:string;
-}
+  question: string;
+  example_answer: string;
+};
 
 const WorkSpace = () => {
-    const [generatedPrompt, setGeneratedPrompt] = useState<string>('');
-    const [chat, setChat] = useState<string[]>([]);
-    const [questions, setQuestions] = useState<QuestionAnswer[]>([]);
-    const [loadingPrompt, setLoadingPrompt] = useState<boolean>(false);
+  const [generatedPrompt, setGeneratedPrompt] = useState<string>("");
+  const [chat, setChat] = useState<string[]>([]);
+  const [questions, setQuestions] = useState<QuestionAnswer[]>([]);
+  const [loadingPrompt, setLoadingPrompt] = useState<boolean>(false);
 
   return (
-    <div className="w-[95%] h-[75%] flex gap-[12px] items-stretch justify-center mb-[50px]">
-        {/* Left */}
-        <div className="container flex-1 flex items-stretch flex-col gap-[6px] justify-between">
-          <p className="muted-text mb-[12px]">Chat</p>
+    <div className="w-full min-h-screen md:min-h-0 md:h-[75%] flex flex-col md:flex-row gap-3 p-2 overflow-hidden">
 
-          {/* Chat output */}
-          <div className="w-full flex-8 overflow-y-scroll no-scrollbar">
-            {
-              chat.map((message: string, index: number) => (
-                <div key={index} className={`w-full flex h-auto mb-[8px] ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                  <p className={`text-[14px] text-primary-text p-[8px] ${index % 2 === 0 ? 'bg-border-subtle rounded-bl-[8px] rounded-tr-[0px] rounded-tl-[8px] rounded-br-[8px] max-w-[80%]' : 'w-full'}`}>{message}</p>
-                </div>
-              ))
-            }
-            <div className={`w-full h-auto mb-[8px] justify-start ${loadingPrompt ? 'flex' : 'hidden'}}`}>
-              <p className={`text-[14px] text-primary-text p-[8px] w-full ${loadingPrompt ? '' : 'hidden'}`}>Thinking...</p>
+      {/* LEFT */}
+      <div className="container flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden">
+
+        <p className="muted-text mb-2">Chat</p>
+
+        {/* CHAT BODY */}
+        <div className="flex-1 overflow-y-auto no-scrollbar">
+          {chat.map((message, index) => (
+            <div
+              key={index}
+              className={`w-full flex mb-2 ${
+                index % 2 === 0 ? "justify-end" : "justify-start"
+              }`}
+            >
+              <p
+                className={`text-[14px] p-2 ${
+                  index % 2 === 0
+                    ? "bg-border-subtle text-primary-text !rounded-tr-[0px] rounded-[8px] w-[80%]"
+                    : "text-primary-text w-[90%]"
+                }`}
+              >
+                {message}
+              </p>
             </div>
-          </div>
-          
-          {/* Chat input */}
-          <div className="w-full flex-1">
-            {/* Input area */}
-            <Input 
-              setGeneratedPrompt={setGeneratedPrompt} 
-              setChat={setChat} 
-              setQuestions={setQuestions} 
-              setLoadingPrompt={setLoadingPrompt}
-            />
-          </div>
+          ))}
+
+          {loadingPrompt && (
+            <p className="text-[14px] text-primary-text">Thinking...</p>
+          )}
         </div>
 
-        {/* Middle */}
-        <div className="flex-1 flex flex-col gap-[12px] items-stretch">
-          {/* Top */}
-          <div className="w-full h-[15%] container"></div>
-
-          {/* Bottom */}
-          <div className="w-full h-[85%] flex-8 container">
-            <p className="muted-text mb-[2px]">Generated Prompt</p>
-            <div className="w-full overflow-y-scroll p-[12px] h-[95%] text-[14px] no-scrollbar">
-                {
-                  generatedPrompt ? 
-                    <Markdown>{generatedPrompt}</Markdown> 
-                  : ( 
-                    <div className="w-full h-full flex items-center justify-center">
-                      <p className="muted-text w-full text-center">Generated prompt will appear here</p>
-                    </div>
-                  )
-                }
-            </div>
-          </div>
-        </div>
-        
-        {/* Right */}
-        <div className="container flex-1 flex items-stretch justify-between flex-col p-[8px]">
-            <p className="muted-text">Questions</p>
-
-            {/* Questions */}
-            <div className="w-full max-h-[80%] mt-[8px]">
-              {
-                questions.length === 0 ? (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <p className="muted-text w-full text-center">Questions will appear here</p>
-                  </div>
-                  )
-                  :
-                    <Questions questions={questions}/>
-                
-              }
-            </div>
-
-            <button className="btn">Refine</button>
+        {/* INPUT */}
+        <div className="mt-2 shrink-0">
+          <Input
+            setGeneratedPrompt={setGeneratedPrompt}
+            setChat={setChat}
+            setQuestions={setQuestions}
+            setLoadingPrompt={setLoadingPrompt}
+          />
         </div>
       </div>
-  )
-}
 
-export default WorkSpace
+      {/* MIDDLE */}
+      <div className="flex flex-col md:flex-1 h-[100vh] md:h-full overflow-hidden gap-[12px]">
+
+        {/* TOP */}
+        <div className="container h-[15%] min-h-[60px] shrink-0 flex items-center justify-center">
+          <p className="muted-text">Middle Top Section</p>
+        </div>
+
+        {/* BOTTOM */}
+        <div className="container flex-1 flex flex-col overflow-hidden">
+
+          <p className="muted-text mb-2 shrink-0">
+            Generated Prompt
+          </p>
+
+          {/* FIXED HEIGHT SCROLL AREA */}
+          <div className="flex-1 overflow-y-auto p-3 text-[14px] no-scrollbar">
+
+            {generatedPrompt ? (
+              <Markdown>{generatedPrompt}</Markdown>
+            ) : (
+              <div className="h-full flex items-center justify-center">
+                <p className="muted-text text-center">
+                  Generated prompt will appear here
+                </p>
+              </div>
+            )}
+
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT */}
+      <div className="container flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden">
+
+        <p className="muted-text shrink-0">Questions</p>
+
+        <div className="flex-1 overflow-y-auto mt-2 no-scrollbar">
+
+          {questions.length === 0 ? (
+            <div className="h-full flex items-center justify-center">
+              <p className="muted-text text-center">
+                Questions will appear here
+              </p>
+            </div>
+          ) : (
+            <Questions questions={questions} />
+          )}
+
+        </div>
+
+        <button className="btn mt-2 shrink-0">Refine</button>
+      </div>
+    </div>
+  );
+};
+
+export default WorkSpace;
