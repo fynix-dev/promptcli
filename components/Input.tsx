@@ -34,7 +34,7 @@ const Input = ({setGeneratedPrompt, setChat, setQuestions, setLoadingPrompt}: In
 
       setLoadingPrompt(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/ai`, {
+        const response = await fetch('https://fynix-dev.github.io/promptcli/api/ai', {
           method: "POST",
           headers: {
               "Content-Type": "application/json"
