@@ -10,21 +10,33 @@ type QuestionAnswer = {
   example_answer: string;
 };
 
+type TabType = "left" | "middle" | "right";
+
 const WorkSpace = () => {
   const [generatedPrompt, setGeneratedPrompt] = useState<string>("");
   const [chat, setChat] = useState<string[]>([]);
   const [questions, setQuestions] = useState<QuestionAnswer[]>([]);
   const [loadingPrompt, setLoadingPrompt] = useState<boolean>(false);
 
+  const [activeTab, setActiveTab] = useState<TabType>("left");
+
   return (
     <div className="w-full min-h-screen md:min-h-0 md:h-[75%] flex flex-col md:flex-row gap-3 p-2 overflow-hidden">
 
-      {/* LEFT */}
-      <div className="container flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden">
+      {/* MOBILE TABS */}
+      <div className="tabs tabs-box !bg-secondary-bg md:hidden flex items-center gap-[12px] p-[4px]">
+        <input type="radio" name="my_tabs_1" onClick={() => setActiveTab('left')} className={`tab bg-border-subtle flex-1 ${activeTab === 'left' ? 'tab-active' : ''}`} aria-label="Chat"/>
+        <input type="radio" name="my_tabs_1" onClick={() => setActiveTab('middle')} className={`tab bg-border-subtle flex-1 ${activeTab === 'middle' ? 'tab-active' : ''}`} aria-label="Prompt" />
+        <input type="radio" name="my_tabs_1" onClick={() => setActiveTab('right')} className={`tab bg-border-subtle flex-1 ${activeTab === 'right' ? 'tab-active' : ''}`} aria-label="Questions" />
+      </div>
 
+      {/* LEFT */}
+      <div
+        className={`container flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden
+        ${activeTab !== "left" ? "hidden md:flex" : ""}`}
+      >
         <p className="muted-text mb-2">Chat</p>
 
-        {/* CHAT BODY */}
         <div className="flex-1 overflow-y-auto no-scrollbar">
           {chat.map((message, index) => (
             <div
@@ -50,20 +62,23 @@ const WorkSpace = () => {
           )}
         </div>
 
-        {/* INPUT */}
         <div className="mt-2 shrink-0">
           <Input
             setGeneratedPrompt={setGeneratedPrompt}
             setChat={setChat}
             setQuestions={setQuestions}
             setLoadingPrompt={setLoadingPrompt}
+            loadingPrompt={loadingPrompt}
+            setActiveTab={setActiveTab}
           />
         </div>
       </div>
 
       {/* MIDDLE */}
-      <div className="flex flex-col md:flex-1 h-[100vh] md:h-full overflow-hidden gap-[12px]">
-
+      <div
+        className={`flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden gap-[12px]
+        ${activeTab !== "middle" ? "hidden md:flex" : ""}`}
+      >
         {/* TOP */}
         <div className="container h-[15%] min-h-[60px] shrink-0 flex items-center justify-center">
           <p className="muted-text">Middle Top Section</p>
@@ -71,14 +86,9 @@ const WorkSpace = () => {
 
         {/* BOTTOM */}
         <div className="container flex-1 flex flex-col overflow-hidden">
+          <p className="muted-text mb-2 shrink-0">Generated Prompt</p>
 
-          <p className="muted-text mb-2 shrink-0">
-            Generated Prompt
-          </p>
-
-          {/* FIXED HEIGHT SCROLL AREA */}
           <div className="flex-1 overflow-y-auto p-3 text-[14px] no-scrollbar">
-
             {generatedPrompt ? (
               <Markdown>{generatedPrompt}</Markdown>
             ) : (
@@ -88,18 +98,18 @@ const WorkSpace = () => {
                 </p>
               </div>
             )}
-
           </div>
         </div>
       </div>
 
       {/* RIGHT */}
-      <div className="container flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden">
-
+      <div
+        className={`container flex flex-col md:flex-1 h-[70vh] md:h-full overflow-hidden
+        ${activeTab !== "right" ? "hidden md:flex" : ""}`}
+      >
         <p className="muted-text shrink-0">Questions</p>
 
         <div className="flex-1 overflow-y-auto mt-2 no-scrollbar">
-
           {questions.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <p className="muted-text text-center">
@@ -109,7 +119,6 @@ const WorkSpace = () => {
           ) : (
             <Questions questions={questions} />
           )}
-
         </div>
 
         <button className="btn mt-2 shrink-0">Refine</button>
